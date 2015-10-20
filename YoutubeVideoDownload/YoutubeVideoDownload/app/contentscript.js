@@ -17,7 +17,6 @@ else if (document.URL.search("youtube-mp3.org") > -1) {
 	var progressInfoEl = $('#progress_info')[0];
 	var timer = window.setInterval(function () {
 		if (progressInfoEl.classList.contains('success')) {
-			console.log($('#dl_link').children());
 			var visibleEl = $('#dl_link').children().not('[style]')[0];
 			if (visibleEl) {
 				chrome.runtime.sendMessage({
@@ -58,8 +57,6 @@ else if (document.URL.search("youtube.com/results") > -1) {
 				$buttonContent.css("background", "no-repeat url(//s.ytimg.com/yts/imgbin/www-hitchhiker-vfl8VEEGb.webp) -1px -700px");
 			}, 5000);
 
-			console.log($(this).parent().parent().children(".yt-lockup-thumbnail").children("a").attr("href").split("watch?v=")[1]);
-			console.log("http://www.youtube-mp3.org/#v" + $(this).parent().parent().children(".yt-lockup-thumbnail").children("a").attr("href").split("watch?v=")[1]);
 			var newwindow = window.open("http://www.youtube-mp3.org/#v" + $(this).parent().parent().children(".yt-lockup-thumbnail").children("a").attr("href").split("watch?v=")[1]);
 			newwindow.focus();
 		})
