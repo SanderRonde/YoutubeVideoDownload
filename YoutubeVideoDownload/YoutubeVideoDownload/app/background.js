@@ -17,7 +17,7 @@ chrome.downloads.onChanged.addListener(function (download) {
 
 chrome.runtime.onMessage.addListener(
 	function (request) {
-		if (!localStorage.location) {
+		if (localStorage.location === undefined && localStorage.location !== '') {
 			chrome.downloads.showDefaultFolder();
 			var loc = prompt("Please enter a storage location relative to your download location, the default location is the folder that just opened", "");
 			loc = loc.replace(/\\/g, "\\\\");
