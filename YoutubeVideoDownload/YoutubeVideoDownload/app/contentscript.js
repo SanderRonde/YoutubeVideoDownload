@@ -4,13 +4,13 @@ if (document.URL.search("youtube.com/watch") > -1) {
 			"<div class='ytp-menuitem-content'></div>" +
 			"</div>")
 		.click(function() {
-			var newwindow = window.open("http://www.youtube-mp3.org/#v=" + document.URL.split("watch?v=")[1]);
+			var newwindow = window.open("http://www.youtube-mp3.org/#v" + document.URL.split("watch?v=")[1]);
 			newwindow.focus();
 		})
 		.appendTo("#contextmenu");
 }
 else if (document.URL.search("youtube-mp3.org") > -1) {
-	$('#youtube-url').attr('value', 'http://www.youtube.com/watch?v' + location.href.split("#v")[1])
+	$('#youtube-url').attr('value', 'http://www.youtube.com/watch?v=' + location.href.split("#v")[1]);
 	setTimeout(function () {
 		$("#submit").click();
 	}, 50);
@@ -28,7 +28,7 @@ else if (document.URL.search("youtube-mp3.org") > -1) {
 				window.clearInterval(timer);
 			}
 		}
-	}, 100);
+	}, 150);
 }
 else if (document.URL.search("youtube.com/results") > -1) {
 
@@ -58,7 +58,9 @@ else if (document.URL.search("youtube.com/results") > -1) {
 				$buttonContent.css("background", "no-repeat url(//s.ytimg.com/yts/imgbin/www-hitchhiker-vfl8VEEGb.webp) -1px -700px");
 			}, 5000);
 
-			var newwindow = window.open("http://www.youtube-mp3.org/#v=" + $(this).parent().parent().children(".yt-lockup-thumbnail").children("a").attr("href").split("watch?v=")[1]);
+			console.log($(this).parent().parent().children(".yt-lockup-thumbnail").children("a").attr("href").split("watch?v=")[1]);
+			console.log("http://www.youtube-mp3.org/#v" + $(this).parent().parent().children(".yt-lockup-thumbnail").children("a").attr("href").split("watch?v=")[1]);
+			var newwindow = window.open("http://www.youtube-mp3.org/#v" + $(this).parent().parent().children(".yt-lockup-thumbnail").children("a").attr("href").split("watch?v=")[1]);
 			newwindow.focus();
 		})
 		.hide()
