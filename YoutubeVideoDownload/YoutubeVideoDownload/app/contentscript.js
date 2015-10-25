@@ -1,6 +1,6 @@
 if (document.URL.search('youtube.com/watch') > -1) {
 	$('<div class=\'ytp-menuitem\' aria-haspopup=\'false\' tabindex=\'38\' role=\'menuitem\' href=\'#\'>' +
-			'<div class=\'ytp-menuitem-label\'>Download MP3 DA</div>' +
+			'<div class=\'ytp-menuitem-label\'>Download MP3</div>' +
 			'<div class=\'ytp-menuitem-content\'></div>' +
 			'</div>')
 		.click(function() {
@@ -39,7 +39,7 @@ else if (document.URL.search('youtube.com/results') > -1) {
 		$(this).children('.download-mp3-button').hide();
 	});
 	var $buttonContent;
-	var $buttonCont = $('<button class="yt-uix-button yt-uix-button-size-small yt-uix-button-default yt-uix-button-empty yt-uix-button-has-icon no-icon-markup video-actions spf-nolink yt-uix-tooltip download-mp3-button hide-until-delayloaded" type="button" onclick=";return false;" title="Download MP3 DA" role="button" data-video-ids="lgbW6IuwcZQ" data-tooltip-text="Download MP3 DA"></button>')
+	var $buttonCont = $('<button class="yt-uix-button yt-uix-button-size-small yt-uix-button-default yt-uix-button-empty yt-uix-button-has-icon no-icon-markup video-actions spf-nolink yt-uix-tooltip download-mp3-button hide-until-delayloaded" type="button" onclick=";return false;" title="Download MP3 DA" role="button" data-video-ids="lgbW6IuwcZQ" data-tooltip-text="Download MP3"></button>')
 		.css({
 			marginRight: '24px',
 			padding: 0,
