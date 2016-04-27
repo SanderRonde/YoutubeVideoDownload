@@ -1,13 +1,19 @@
 if (document.URL.search('youtube.com/watch') > -1) {
-	$('<div class=\'ytp-menuitem\' aria-haspopup=\'false\' tabindex=\'38\' role=\'menuitem\' href=\'#\'>' +
-			'<div class=\'ytp-menuitem-label\'>Download MP3</div>' +
-			'<div class=\'ytp-menuitem-content\'></div>' +
-			'</div>')
-		.click(function() {
-			var newwindow = window.open('http://www.youtube-mp3.org/#v' + document.URL.split('watch?v=')[1]);
-			newwindow.focus();
-		})
-		.appendTo('#contextmenu');
+	function findContextMenu() {
+		if (document.getElementById('contextmenu')) {
+			$('<div class=\'ytp-menuitem\' aria-haspopup=\'false\' tabindex=\'38\' role=\'menuitem\' href=\'#\'>' +
+					'<div class=\'ytp-menuitem-label\'>Download MP3</div>' +
+					'<div class=\'ytp-menuitem-content\'></div>' +
+					'</div>')
+				.click(function() {
+					var newwindow = window.open('http://www.youtube-mp3.org/#v' + document.URL.split('watch?v=')[1]);
+					newwindow.focus();
+				})
+				.appendTo('#contextmenu');
+		} else {
+			setTimeout(findContextMenu, 500);
+		}
+	}
 }
 else if (document.URL.search('youtube-mp3.org') > -1) {
 	$('#youtube-url').attr('value', 'http://www.youtube.com/watch?v=' + location.href.split('#v')[1]);
