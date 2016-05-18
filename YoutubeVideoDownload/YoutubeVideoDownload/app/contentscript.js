@@ -1,4 +1,19 @@
-(function() {
+(function () {
+	function waitForElement(selector, callback) {
+		var el;
+		if ((el = document.querySelector(selector))) {
+			callback(el);
+		} else {
+			window.setTimeout(() => {
+				waitForElement(selector, callback);
+			}, 50);
+		}
+	}
+
+	function increaseHeight(element) {
+		element.style.height = (~~element.style.height.split('px')[0] + 33) + 'px';
+	}
+
 	if (document.URL.search('youtube.com/watch') > -1) {
 		function openWindow() {
 			const newwindow = window.open(`http://www.youtube-mp3.org/#v${
@@ -7,30 +22,29 @@
 			newwindow.focus();
 		}
 
-		function findContextMenu() {
+		waitForElement('#contextmenu', (contextmenu) => {
 			const contextMenuContainer = $('.ytp-contextmenu')[0];
-			if (document.getElementById('contextmenu')) {
-				$('<div class=\'ytp-menuitem\' aria-haspopup=\'false\' tabindex=\'38\' role=\'menuitem\' href=\'#\'>' +
-						'<div class=\'ytp-menuitem-label\'>Download MP3</div>' +
-						'<div class=\'ytp-menuitem-content\'></div>' +
-						'</div>')
-					.click(openWindow)
-					.insertBefore($('#contextmenu').children()[2]);
-				contextMenuContainer.style
-					.height = (~~contextMenuContainer.style.height.split('px')[0] + 33) + 'px';
-			} else {
-				setTimeout(findContextMenu, 100);
-			}
-		}
+			$('<div class=\'ytp-menuitem\' aria-haspopup=\'false\' tabindex=\'38\' role=\'menuitem\' href=\'#\'>' +
+					'<div class=\'ytp-menuitem-label\'>Download MP3</div>' +
+					'<div class=\'ytp-menuitem-content\'></div>' +
+					'</div>')
+				.click(openWindow)
+				.insertBefore($(contextmenu).children()[2]);
+			const child = contextMenuContainer.children[0];
+			increaseHeight(contextMenuContainer);
+			increaseHeight(child);
+			increaseHeight(child.children[0]);
+		});
 
-		findContextMenu();
 
-		document.getElementById('movie_player').onkeypress = (e) => {
-			if (e.which === 100) {
-				//Pressed D
-				openWindow();
+		waitForElement('#movie_player', (moviePlayer) => {
+			moviePlayer.onkeypress = (e) => {
+				if (e.which === 100) {
+					//Pressed D
+					openWindow();
+				}
 			}
-		};
+		});
 	} else if (document.URL.search('youtube-mp3.org') > -1) {
 		//Check if there's even a video in the url
 		const vidId = location.href.split('#v')[1];
