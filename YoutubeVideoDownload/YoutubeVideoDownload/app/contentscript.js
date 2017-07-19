@@ -36,15 +36,16 @@
 			increaseHeight(child.children[0]);
 		});
 
-
-		waitForElement('#movie_player', (moviePlayer) => {
-			moviePlayer.onkeypress = (e) => {
-				if (e.which === 100) {
-					//Pressed D
-					openWindow();
+		window.setTimeout(() => {
+			waitForElement('#movie_player', (moviePlayer) => {
+				moviePlayer.onkeypress = (e) => {
+					if (e.which === 100) {
+						//Pressed D
+						openWindow();
+					}
 				}
-			}
-		});
+			});
+		}, 2500);
 	} else if (document.URL.search('youtube-mp3.org') > -1) {
 		//Check if there's even a video in the url
 		const vidId = location.href.split('#v')[1];
