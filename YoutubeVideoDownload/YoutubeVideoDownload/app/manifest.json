@@ -16,6 +16,5 @@
    "manifest_version": 2,
    "name": "Youtube MP3 Downloader",
    "permissions": [ "downloads", "tabs", "\u003Call_urls>", "activeTab" ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.0.11"
+   "version": "1.0.12"
 }
