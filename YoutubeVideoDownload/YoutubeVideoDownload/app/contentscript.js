@@ -16,7 +16,7 @@
 
 	if (document.URL.search('youtube.com/watch') > -1) {
 		function openWindow() {
-			const newwindow = window.open(`http://www.youtube-mp3.org/#v${
+			const newwindow = window.open(`http://ytmp3.cc/#v${
 				document.URL.split('watch?v=')[1]
 			}`);
 			newwindow.focus();
@@ -46,26 +46,22 @@
 				}
 			});
 		}, 2500);
-	} else if (document.URL.search('youtube-mp3.org') > -1) {
+	} else if (document.URL.search('ytmp3.cc') > -1) {
 		//Check if there's even a video in the url
 		const vidId = location.href.split('#v')[1];
 		if (vidId && vidId.length > 0) {
-			$('#youtube-url').attr('value', `http://www.youtube.com/watch?v=${vidId}`);
+			$('#input').value = `http://www.youtube.com/watch?v=${vidId}`;
 			setTimeout(function() {
 				$('#submit').click();
-			}, 50);
-			var progressInfoEl = $('#progress_info')[0];
+			}, 500);
 			var timer = window.setInterval(function() {
-				if (progressInfoEl.classList.contains('success')) {
-					const visibleEl = $('#dl_link').children().not('[style]')[0];
-					if (visibleEl) {
-						chrome.runtime.sendMessage({
-							data: `http://www.youtube-mp3.org${visibleEl.getAttribute('href')}`,
-							title: document.getElementById('title').innerHTML.split('</b> ')[1]
-						});
-						window.close();
-						window.clearInterval(timer);
-					}
+				if ($('#file')) {
+					chrome.runtime.sendMessage({
+						data: $('#file').href,
+						title: document.getElementById('title').innerText
+					});
+					window.close();
+					window.clearInterval(timer);
 				}
 			}, 150);
 		}
