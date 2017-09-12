@@ -50,17 +50,17 @@
 		//Check if there's even a video in the url
 		const vidId = location.href.split('#v')[1];
 		if (vidId && vidId.length > 0) {
-			$('#input').value = `http://www.youtube.com/watch?v=${vidId}`;
+			$('#input').val(`http://www.youtube.com/watch?v=${vidId}`);
 			setTimeout(function() {
 				$('#submit').click();
 			}, 500);
 			var timer = window.setInterval(function() {
-				if ($('#file')) {
+				if ($('#file').attr('href')) {
 					chrome.runtime.sendMessage({
-						data: $('#file').href,
+						data: $('#file').attr('href'),
 						title: document.getElementById('title').innerText
 					});
-					window.close();
+					//window.close();
 					window.clearInterval(timer);
 				}
 			}, 150);

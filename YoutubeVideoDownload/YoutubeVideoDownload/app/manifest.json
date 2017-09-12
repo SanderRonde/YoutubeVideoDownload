@@ -4,7 +4,7 @@
    },
    "content_scripts": [ {
       "js": [ "jquery-2.0.3.min.js", "contentscript.js" ],
-      "matches": [ "*://www.youtube.com/*", "*://www.ytmp3.cc/*" ]
+      "matches": [ "*://www.youtube.com/*", "*://ytmp3.cc/*" ]
    } ],
    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
    "description": "Download youtube videos as MP3",
